@@ -30,7 +30,7 @@ body {
   line-height: 1.5;
 }
 
-/* Стилізація скролбару */
+/* === Стилізація скролбару === */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -45,11 +45,11 @@ body {
   background: var(--text-muted);
 }
 
-/* === Шапка сайту === */
+/* === Шапка сайту (Головна) === */
 header {
   background: rgba(28, 28, 36, 0.85);
-  -webkit-backdrop-filter: blur(12px); /* Спочатку з префіксом */
-  backdrop-filter: blur(12px); /* Потім стандартна */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -61,14 +61,6 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-header .header-top {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap; /* Забороняємо перенесення, щоб все було в один ряд */
-  gap: 15px;
-  width: 100%;
 }
 
 h1 {
@@ -204,6 +196,28 @@ h1 {
   text-overflow: ellipsis;
 }
 
+/* Альтернативні назви */
+.manga-card .alt-titles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.manga-card .alt-titles span {
+  font-size: 9px;
+  font-weight: 400;
+  padding: 1px 8px;
+  background: rgba(255, 107, 107, 0.08);
+  color: var(--text-muted);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 107, 0.1);
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .manga-card .genres {
   font-size: 12px;
   font-weight: 600;
@@ -234,26 +248,13 @@ h1 {
   width: fit-content;
 }
 
-.status-ongoing {
-  background: rgba(46, 213, 115, 0.15);
-  color: var(--success-color);
-  border: 1px solid rgba(46, 213, 115, 0.3);
-}
-.status-completed {
-  background: rgba(52, 152, 219, 0.15);
-  color: #3498db;
-  border: 1px solid rgba(52, 152, 219, 0.3);
-}
-.status-frozen {
-  background: rgba(253, 150, 68, 0.15);
-  color: #fd9644;
-  border: 1px solid rgba(253, 150, 68, 0.3);
-}
+.status-ongoing { background: rgba(46, 213, 115, 0.15); color: var(--success-color); border: 1px solid rgba(46, 213, 115, 0.3); }
+.status-completed { background: rgba(52, 152, 219, 0.15); color: #3498db; border: 1px solid rgba(52, 152, 219, 0.3); }
+.status-frozen { background: rgba(253, 150, 68, 0.15); color: #fd9644; border: 1px solid rgba(253, 150, 68, 0.3); }
 
 /* === Модальне вікно === */
-/* === Модальне вікно === */
 .modal {
-  display: none; /* Тепер воно дійсно приховане за замовчуванням */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -269,13 +270,13 @@ h1 {
 .modal-content {
   background: var(--surface-color);
   padding: 40px;
-  width: 90%; /* Щоб на мобільних не прилипало до країв */
+  width: 90%;
   max-width: 550px;
   border-radius: 20px;
   border: 1px solid var(--border-color);
   position: relative;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  margin: 10vh auto; /* Відступ зверху (10% екрану) та центрування по горизонталі */
+  margin: 10vh auto;
 }
 
 .close-modal {
@@ -353,34 +354,21 @@ footer {
   margin-top: 40px;
 }
 
-/* === Адаптив === */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    padding: 15px;
-  }
-  .search-box {
-    width: 100%;
-    flex-direction: column;
-  }
-  .catalog {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-    padding: 20px 15px;
-  }
-  .manga-card img {
-    height: 240px;
-  }
-}
 
 /* =========================================
    === СТИЛІ ДЛЯ ЧИТАЛКИ (reader.html) ===
    ========================================= */
 
-/* --- Шапка читалки --- */
+header .header-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+  width: 100%;
+}
+
 .back-btn {
-  flex-shrink: 0; /* Забороняємо кнопці стискатися */
-  /* інші стилі кнопки залишаються без змін... */
+  flex-shrink: 0;
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 800;
@@ -400,14 +388,14 @@ footer {
 }
 
 #mangaTitle {
-  flex: 1 1 auto; /* Дозволяємо заголовку займати весь вільний простір */
+  flex: 1 1 auto;
   text-align: center;
   font-size: 20px;
   font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-width: 50px; /* Обов'язково для роботи ellipsis у flex-контейнері */
+  min-width: 50px;
   padding: 0 10px;
 }
 
@@ -424,6 +412,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .settings-toggle:hover,
@@ -433,9 +422,9 @@ footer {
   transform: rotate(45deg);
 }
 
-/* --- Панель налаштувань (Випадаюче вікно) --- */
+/* --- Панель налаштувань --- */
 .settings-panel {
-  display: none; /* Приховано за замовчуванням */
+  display: none;
   background: rgba(28, 28, 36, 0.95);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -459,14 +448,8 @@ footer {
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .setting-group {
@@ -486,7 +469,6 @@ footer {
   min-width: 140px;
 }
 
-/* Кастомний повзунок ширини */
 .slider-container {
   display: flex;
   align-items: center;
@@ -620,7 +602,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: auto; /* Відсуває інфо в правий край на великих екранах */
+  margin-left: auto;
   background: rgba(0, 0, 0, 0.2);
   padding: 6px 12px;
   border-radius: 8px;
@@ -638,22 +620,19 @@ footer {
   font-weight: 600;
 }
 
-/* --- Контейнер з картинками --- */
+/* --- Контейнер з картинками (Читалка) --- */
 .reader {
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 100vh;
-  /* Плавна зміна ширини та фону через JS */
-  transition:
-    max-width 0.3s ease,
-    background-color 0.3s ease;
+  transition: max-width 0.3s ease, background-color 0.3s ease;
 }
 
 #pagesContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Проміжок між сторінками */
+  gap: 10px;
 }
 
 #pagesContainer img {
@@ -664,24 +643,51 @@ footer {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Адаптив для мобільних --- */
+/* === Адаптив для всіх екранів === */
 @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  header .header-top {
+    flex-wrap: wrap; 
+  }
+  
+  #mangaTitle {
+    order: 3;
+    width: 100%;
+    flex: 1 1 100%;
+    margin-top: 5px;
+  }
+  
+  .search-box {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .catalog {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px 15px;
+  }
+  
+  .manga-card img {
+    height: 240px;
+  }
+  
   .settings-panel {
     right: 15px;
     left: 15px;
     width: auto;
     max-width: none;
-    top: 130px; /* Трохи нижче на мобільних */
+    top: 170px; 
   }
 
   .setting-group {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
-  }
-
-  #mangaTitle {
-    font-size: 16px;
   }
 
   .chapter-info {
@@ -691,438 +697,3 @@ footer {
     margin-top: 10px;
   }
 }
-
-/* ===== АЛЬТЕРНАТИВНІ НАЗВИ ===== */
-.manga-card .alt-titles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 4px;
-}
-
-.manga-card .alt-titles span {
-  font-size: 9px;
-  font-weight: 400;
-  padding: 1px 8px;
-  background: rgba(255, 107, 107, 0.08);
-  color: var(--text-muted);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 107, 107, 0.1);
-  white-space: nowrap;
-  max-width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.manga-card .alt-titles span.extra {
-  background: var(--bg-input);
-  border-color: var(--border);
-  color: var(--text-muted);
-}
-
-
-
-
-
-/* ===== КОМПАКТНИЙ ХЕДЕР ЧИТАЛКИ ===== */
-.reader-header {
-  background: rgba(15, 15, 26, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: 6px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.reader-header-inner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  max-width: 1440px;
-  margin: 0 auto;
-  flex-wrap: nowrap;
-  min-height: 44px;
-}
-
-/* Ліва частина */
-.reader-header-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.reader-header-left .back-btn {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: var(--transition);
-  line-height: 1;
-}
-
-.reader-header-left .back-btn:hover {
-  background: var(--bg-input);
-  color: var(--accent-hover);
-}
-
-.reader-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 180px;
-}
-
-/* Центр - навігація */
-.reader-nav {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex: 1;
-  justify-content: center;
-  min-width: 0;
-}
-
-.reader-nav button {
-  padding: 4px 10px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 14px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.reader-nav button:hover:not(:disabled) {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-.reader-nav button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-#chapterSelect {
-  padding: 4px 28px 4px 10px;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 12px;
-  font-family: inherit;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 6'%3E%3Cpath fill='%236a6a85' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  min-width: 80px;
-  max-width: 140px;
-  transition: var(--transition);
-  font-weight: 500;
-}
-
-#chapterSelect:hover {
-  border-color: var(--accent);
-}
-
-#chapterSelect option {
-  background: var(--bg-secondary);
-  color: var(--text);
-}
-
-.chapter-num {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.page-count {
-  font-size: 11px;
-  color: var(--text-muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* Права частина */
-.reader-header-right {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.reader-header-right .settings-toggle {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.reader-header-right .settings-toggle:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: rotate(90deg);
-}
-
-.reader-header-right .settings-toggle.active {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: rotate(90deg);
-}
-
-.reader-header-right .language-selector select {
-  padding: 4px 8px;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 11px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: var(--transition);
-  appearance: none;
-  padding-right: 24px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 10 6'%3E%3Cpath fill='%236a6a85' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 6px center;
-}
-
-.reader-header-right .language-selector select:hover {
-  border-color: var(--accent);
-}
-
-/* ===== ПАНЕЛЬ НАЛАШТУВАНЬ (компактна) ===== */
-.settings-panel {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 16px;
-  margin-top: 6px;
-  display: none;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-}
-
-.settings-panel.open {
-  display: flex;
-}
-
-.settings-panel .setting-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.settings-panel .setting-group label {
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.settings-panel .slider-container {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.settings-panel .width-label {
-  font-size: 10px;
-  color: var(--text-muted);
-}
-
-#widthSlider {
-  width: 100px;
-  height: 3px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: var(--border);
-  border-radius: 2px;
-  outline: none;
-}
-
-#widthSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-}
-
-#widthSlider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  border: none;
-}
-
-.width-value {
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
-  min-width: 36px;
-  text-align: center;
-}
-
-#bgColorSelect {
-  padding: 4px 10px;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 12px;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-#bgColorSelect:hover {
-  border-color: var(--accent);
-}
-
-.reset-btn {
-  padding: 4px 12px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 12px;
-  font-family: inherit;
-}
-
-.reset-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* ===== АДАПТИВ ДЛЯ МОБІЛЬНИХ ===== */
-@media (max-width: 768px) {
-  .reader-header {
-    padding: 4px 10px;
-  }
-  
-  .reader-header-inner {
-    flex-wrap: wrap;
-    gap: 4px;
-    min-height: 36px;
-  }
-  
-  .reader-header-left {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .reader-title {
-    font-size: 12px;
-    max-width: 120px;
-  }
-  
-  .reader-nav {
-    order: 3;
-    flex: 1 1 100%;
-    justify-content: center;
-  }
-  
-  .reader-header-right {
-    flex-shrink: 1;
-  }
-  
-  #chapterSelect {
-    font-size: 11px;
-    min-width: 60px;
-    max-width: 100px;
-    padding: 3px 22px 3px 8px;
-  }
-  
-  .chapter-num {
-    font-size: 11px;
-  }
-  
-  .page-count {
-    font-size: 10px;
-  }
-  
-  .settings-panel {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding: 10px 12px;
-  }
-  
-  .settings-panel .setting-group {
-    flex-wrap: wrap;
-  }
-  
-  #widthSlider {
-    width: 80px;
-  }
-}
-
-@media (max-width: 480px) {
-  .reader-title {
-    font-size: 11px;
-    max-width: 80px;
-  }
-  
-  .reader-nav button {
-    padding: 3px 7px;
-    font-size: 12px;
-  }
-  
-  #chapterSelect {
-    font-size: 10px;
-    min-width: 50px;
-    max-width: 80px;
-    padding: 2px 18px 2px 6px;
-  }
-  
-  .chapter-num {
-    font-size: 10px;
-  }
-  
-  .page-count {
-    font-size: 9px;
-  }
-  
-  .reader-header-right .settings-toggle {
-    width: 26px;
-    height: 26px;
-    font-size: 12px;
-  }
-  
-  .reader-header-right .language-selector select {
-    font-size: 10px;
-    padding: 2px 20px 2px 6px;
-  }
-}
-
