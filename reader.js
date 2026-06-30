@@ -367,5 +367,30 @@ function addScrollTopButton() {
 }
 addScrollTopButton();
 
+// ===== ПРИХОВУВАННЯ HEADER-TOP ПРИ СКРОЛІ =====
+let lastScrollTop = 0;
+const headerTopElement = document.querySelector('.header-top');
+
+window.addEventListener('scroll', function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  // Приховуємо header-top тільки якщо прокрутили вниз більше ніж на 50px
+  if (scrollTop > lastScrollTop && scrollTop > 50) {
+    headerTopElement.classList.add('hidden-on-scroll');
+    
+    // Закриваємо панель налаштувань, якщо користувач почав гортати
+    if (settingsPanel.classList.contains('open')) {
+      settingsPanel.classList.remove('open');
+      settingsToggle.classList.remove('active');
+    }
+  } else {
+    // Показуємо назад, якщо скролимо вгору
+    headerTopElement.classList.remove('hidden-on-scroll');
+  }
+  
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+}, false);
+
+
 // ===== ЗАПУСК =====
 loadMangaData();
