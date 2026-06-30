@@ -369,28 +369,31 @@ addScrollTopButton();
 
 // ===== ПРИХОВУВАННЯ ВСІЄЇ ШАПКИ ПРИ СКРОЛІ =====
 let lastScrollTop = 0;
-const headerElement = document.querySelector('header'); // Тепер вибираємо весь header
+const headerElement = document.querySelector("header"); // Тепер вибираємо весь header
 
-window.addEventListener('scroll', function() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-  // Якщо скролимо вниз і прокрутили більше 50px
-  if (scrollTop > lastScrollTop && scrollTop > 50) {
-    headerElement.classList.add('hidden-on-scroll');
-    
-    // Закриваємо панель налаштувань, щоб не заважала
-    if (settingsPanel.classList.contains('open')) {
-      settingsPanel.classList.remove('open');
-      settingsToggle.classList.remove('active');
+window.addEventListener(
+  "scroll",
+  function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Якщо скролимо вниз і прокрутили більше 50px
+    if (scrollTop > lastScrollTop && scrollTop > 50) {
+      headerElement.classList.add("hidden-on-scroll");
+
+      // Закриваємо панель налаштувань, щоб не заважала
+      if (settingsPanel.classList.contains("open")) {
+        settingsPanel.classList.remove("open");
+        settingsToggle.classList.remove("active");
+      }
+    } else {
+      // Якщо скролимо вгору - повертаємо
+      headerElement.classList.remove("hidden-on-scroll");
     }
-  } else {
-    // Якщо скролимо вгору - повертаємо
-    headerElement.classList.remove('hidden-on-scroll');
-  }
-  
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
-}, false);
 
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  },
+  false,
+);
 
 // ===== ЗАПУСК =====
 loadMangaData();
