@@ -48,12 +48,14 @@ body {
 /* === Шапка сайту === */
 header {
   background: rgba(28, 28, 36, 0.85);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Спочатку з префіксом */
+  backdrop-filter: blur(12px); /* Потім стандартна */
   padding: 15px 30px;
   display: flex;
-  flex-direction: column; /* Змінюємо на column, щоб header-top і nav були один під одним */
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: sticky;
   top: 0;
