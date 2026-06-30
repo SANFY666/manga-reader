@@ -30,7 +30,7 @@ body {
   line-height: 1.5;
 }
 
-/* === Стилізація скролбару === */
+/* Стилізація скролбару */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -45,11 +45,11 @@ body {
   background: var(--text-muted);
 }
 
-/* === Шапка сайту (Головна) === */
+/* === Шапка сайту === */
 header {
   background: rgba(28, 28, 36, 0.85);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Спочатку з префіксом */
+  backdrop-filter: blur(12px); /* Потім стандартна */
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -61,6 +61,14 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+header .header-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap; /* Забороняємо перенесення, щоб все було в один ряд */
+  gap: 15px;
+  width: 100%;
 }
 
 h1 {
@@ -196,28 +204,6 @@ h1 {
   text-overflow: ellipsis;
 }
 
-/* Альтернативні назви */
-.manga-card .alt-titles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 4px;
-}
-
-.manga-card .alt-titles span {
-  font-size: 9px;
-  font-weight: 400;
-  padding: 1px 8px;
-  background: rgba(255, 107, 107, 0.08);
-  color: var(--text-muted);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 107, 107, 0.1);
-  white-space: nowrap;
-  max-width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .manga-card .genres {
   font-size: 12px;
   font-weight: 600;
@@ -248,13 +234,26 @@ h1 {
   width: fit-content;
 }
 
-.status-ongoing { background: rgba(46, 213, 115, 0.15); color: var(--success-color); border: 1px solid rgba(46, 213, 115, 0.3); }
-.status-completed { background: rgba(52, 152, 219, 0.15); color: #3498db; border: 1px solid rgba(52, 152, 219, 0.3); }
-.status-frozen { background: rgba(253, 150, 68, 0.15); color: #fd9644; border: 1px solid rgba(253, 150, 68, 0.3); }
+.status-ongoing {
+  background: rgba(46, 213, 115, 0.15);
+  color: var(--success-color);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+.status-completed {
+  background: rgba(52, 152, 219, 0.15);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+.status-frozen {
+  background: rgba(253, 150, 68, 0.15);
+  color: #fd9644;
+  border: 1px solid rgba(253, 150, 68, 0.3);
+}
 
 /* === Модальне вікно === */
+/* === Модальне вікно === */
 .modal {
-  display: none;
+  display: none; /* Тепер воно дійсно приховане за замовчуванням */
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -270,13 +269,13 @@ h1 {
 .modal-content {
   background: var(--surface-color);
   padding: 40px;
-  width: 90%;
+  width: 90%; /* Щоб на мобільних не прилипало до країв */
   max-width: 550px;
   border-radius: 20px;
   border: 1px solid var(--border-color);
   position: relative;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  margin: 10vh auto;
+  margin: 10vh auto; /* Відступ зверху (10% екрану) та центрування по горизонталі */
 }
 
 .close-modal {
@@ -354,154 +353,71 @@ footer {
   margin-top: 40px;
 }
 
+/* === Адаптив === */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 15px;
+  }
+  .search-box {
+    width: 100%;
+    flex-direction: column;
+  }
+  .catalog {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px 15px;
+  }
+  .manga-card img {
+    height: 240px;
+  }
+}
 
 /* =========================================
    === СТИЛІ ДЛЯ ЧИТАЛКИ (reader.html) ===
    ========================================= */
 
-/* --- Компактний Хедер --- */
-.reader-header {
-  background: rgba(28, 28, 36, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.reader-header-inner {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  max-width: 1400px;
-  margin: 0 auto;
-  flex-wrap: nowrap;
-  min-height: 44px;
-}
-
-/* Ліва частина */
-.reader-header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
-.reader-header-left .back-btn {
+/* --- Шапка читалки --- */
+.back-btn {
+  flex-shrink: 0; /* Забороняємо кнопці стискатися */
+  /* інші стилі кнопки залишаються без змін... */
   color: var(--primary-color);
   text-decoration: none;
-  font-size: 16px;
   font-weight: 800;
-  padding: 6px 14px;
-  border-radius: 8px;
-  background: rgba(255, 71, 87, 0.1);
-  transition: var(--transition-speed);
-  display: flex;
+  font-size: 15px;
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 71, 87, 0.1);
+  border-radius: 10px;
+  transition: var(--transition-speed);
 }
 
-.reader-header-left .back-btn:hover {
+.back-btn:hover {
   background: rgba(255, 71, 87, 0.2);
   transform: translateX(-4px);
 }
 
-.reader-title {
-  font-size: 16px;
+#mangaTitle {
+  flex: 1 1 auto; /* Дозволяємо заголовку займати весь вільний простір */
+  text-align: center;
+  font-size: 20px;
   font-weight: 800;
-  color: var(--text-main);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 250px;
+  min-width: 50px; /* Обов'язково для роботи ellipsis у flex-контейнері */
+  padding: 0 10px;
 }
 
-/* Центр - Навігація */
-.reader-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  justify-content: center;
-  min-width: 0;
-}
-
-.reader-nav button {
-  padding: 6px 16px;
+.settings-toggle {
   background: var(--surface-color);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  color: var(--text-main);
-  cursor: pointer;
-  transition: var(--transition-speed);
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.reader-nav button:hover:not(:disabled) {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-  color: #fff;
-}
-
-.reader-nav button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-#chapterSelect {
-  padding: 6px 12px;
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  color: var(--text-main);
-  font-size: 14px;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  min-width: 130px;
-  max-width: 200px;
-  transition: var(--transition-speed);
-}
-
-#chapterSelect:focus, #chapterSelect:hover {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.chapter-num {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--primary-color);
-  white-space: nowrap;
-}
-
-.page-count {
-  font-size: 12px;
-  color: var(--text-muted);
-  white-space: nowrap;
-  font-weight: 600;
-}
-
-/* Права частина */
-.reader-header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
-.reader-header-right .settings-toggle {
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  width: 38px;
-  height: 38px;
-  font-size: 18px;
+  border-radius: 10px;
+  width: 46px;
+  height: 46px;
+  font-size: 20px;
   color: var(--text-main);
   cursor: pointer;
   transition: var(--transition-speed);
@@ -510,32 +426,16 @@ footer {
   justify-content: center;
 }
 
-.reader-header-right .settings-toggle:hover,
-.reader-header-right .settings-toggle.active {
+.settings-toggle:hover,
+.settings-toggle.active {
   border-color: var(--primary-color);
   color: var(--primary-color);
   transform: rotate(45deg);
 }
 
-.reader-header-right .language-selector select {
-  padding: 6px 12px;
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  color: var(--text-main);
-  font-size: 14px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: var(--transition-speed);
-}
-
-.reader-header-right .language-selector select:hover {
-  border-color: var(--primary-color);
-}
-
-/* --- Панель налаштувань --- */
+/* --- Панель налаштувань (Випадаюче вікно) --- */
 .settings-panel {
-  display: none;
+  display: none; /* Приховано за замовчуванням */
   background: rgba(28, 28, 36, 0.95);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -545,8 +445,8 @@ footer {
   width: 100%;
   max-width: 450px;
   position: absolute;
-  top: 70px;
-  right: 20px;
+  top: 80px;
+  right: 30px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
   z-index: 200;
   flex-direction: column;
@@ -559,8 +459,14 @@ footer {
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .setting-group {
@@ -580,6 +486,7 @@ footer {
   min-width: 140px;
 }
 
+/* Кастомний повзунок ширини */
 .slider-container {
   display: flex;
   align-items: center;
@@ -653,19 +560,100 @@ footer {
   border-color: var(--primary-color);
 }
 
-/* --- Контейнер з картинками (Центрування) --- */
-.reader-container {
-  margin: 0 auto; /* Ось це правило центрує мангу! */
+/* --- Навігація глав --- */
+.chapter-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+}
+
+.chapter-nav button {
+  padding: 10px 20px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition-speed);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chapter-nav button:hover:not(:disabled) {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.chapter-nav button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#chapterSelect {
+  padding: 10px 20px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+#chapterSelect:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.chapter-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: auto; /* Відсуває інфо в правий край на великих екранах */
+  background: rgba(0, 0, 0, 0.2);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+#chapterNumber {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+#pageCount {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* --- Контейнер з картинками --- */
+.reader {
+  margin: 0 auto;
   padding: 40px 20px;
   min-height: 100vh;
-  transition: max-width 0.3s ease, background-color 0.3s ease;
+  /* Плавна зміна ширини та фону через JS */
+  transition:
+    max-width 0.3s ease,
+    background-color 0.3s ease;
 }
 
 #pagesContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* Проміжок між сторінками */
 }
 
 #pagesContainer img {
@@ -676,34 +664,58 @@ footer {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* === Адаптив для мобільних === */
-@media (max-width: 900px) {
-  .reader-header-inner {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .reader-nav {
-    order: 3;
-    flex: 1 1 100%;
-    margin-top: 10px;
-  }
-  
-  .reader-title {
-    max-width: 150px;
-  }
-  
+/* --- Адаптив для мобільних --- */
+@media (max-width: 768px) {
   .settings-panel {
-    top: 120px;
     right: 15px;
     left: 15px;
     width: auto;
     max-width: none;
+    top: 130px; /* Трохи нижче на мобільних */
   }
-  
+
   .setting-group {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
   }
+
+  #mangaTitle {
+    font-size: 16px;
+  }
+
+  .chapter-info {
+    margin-left: 0;
+    width: 100%;
+    align-items: center;
+    margin-top: 10px;
+  }
+}
+
+/* ===== АЛЬТЕРНАТИВНІ НАЗВИ ===== */
+.manga-card .alt-titles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.manga-card .alt-titles span {
+  font-size: 9px;
+  font-weight: 400;
+  padding: 1px 8px;
+  background: rgba(255, 107, 107, 0.08);
+  color: var(--text-muted);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 107, 0.1);
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.manga-card .alt-titles span.extra {
+  background: var(--bg-input);
+  border-color: var(--border);
+  color: var(--text-muted);
 }
