@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="app_title">Читалка манги</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <a
+          href="index.html"
+          class="back-btn"
+          data-i18n="reader_back"
+          aria-label="Повернутися до каталогу"
+          >← Назад</a
+        >
+        <h2 id="mangaTitle" data-i18n="reader_loading">Завантаження...</h2>
+
+        <!-- ПЕРЕМИКАЧ МОВ -->
+        <div class="language-selector">
+          <select
+            id="languageSelect"
+            title="Вибір мови"
+            aria-label="Вибір мови"
+          >
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+          </select>
+        </div>
+
+        <button
+          id="settingsToggle"
+          class="settings-toggle"
+          data-i18n-title="reader_settings"
+          title="Налаштування"
+          aria-label="Відкрити налаштування"
+        >
+          ⚙️
+        </button>
+      </div>
+
+      <!-- Панель налаштувань -->
+      <div id="settingsPanel" class="settings-panel">
+        <div class="setting-group">
+          <label for="widthSlider" data-i18n="settings_width"
+            >Ширина контейнера:</label
+          >
+          <div class="slider-container">
+            <span class="width-label" data-i18n="settings_narrow">Вузько</span>
+            <input
+              type="range"
+              id="widthSlider"
+              min="30"
+              max="100"
+              value="80"
+            />
+            <span class="width-label" data-i18n="settings_wide">Широко</span>
+          </div>
+          <span id="widthValue" class="width-value">80%</span>
+        </div>
+
+        <div class="setting-group">
+          <label for="bgColorSelect" data-i18n="settings_bg">Фон:</label>
+          <select id="bgColorSelect" title="Вибір кольору фону">
+            <option value="#0d0d0d" data-i18n="settings_bg_dark">Темний</option>
+            <option value="#1a1a1a" data-i18n="settings_bg_darker">
+              Дуже темний
+            </option>
+            <option value="#2b2b2b" data-i18n="settings_bg_gray">Сірий</option>
+            <option value="#f5f0e8" data-i18n="settings_bg_sepia">
+              Світлий (сепія)
+            </option>
+            <option value="#ffffff" data-i18n="settings_bg_white">Білий</option>
+          </select>
+        </div>
+
+        <button
+          id="resetSettingsBtn"
+          class="reset-btn"
+          data-i18n="settings_reset"
+        >
+          ↺ Скинути
+        </button>
+      </div>
+
+      <div class="chapter-nav">
+        <button
+          id="prevChapter"
+          data-i18n-title="reader_prev_title"
+          title="Попередня глава"
+          aria-label="Попередня глава"
+          data-i18n="reader_prev"
+        >
+          ◀
+        </button>
+
+        <label
+          for="chapterSelect"
+          class="visually-hidden"
+          data-i18n="reader_select_chapter"
+          >Вибір глави</label
+        >
+        <select
+          id="chapterSelect"
+          title="Виберіть главу для читання"
+          aria-label="Вибір глави"
+        >
+          <option value="" data-i18n="reader_loading">Завантаження...</option>
+        </select>
+
+        <button
+          id="nextChapter"
+          data-i18n-title="reader_next_title"
+          title="Наступна глава"
+          aria-label="Наступна глава"
+          data-i18n="reader_next"
+        >
+          ▶
+        </button>
+
+        <div class="chapter-info">
+          <span id="chapterNumber" aria-live="polite" data-i18n="reader_chapter"
+            >Глава 1</span
+          >
+          <span id="pageCount" aria-live="polite"></span>
+        </div>
+      </div>
+    </header>
+
+    <main id="readerContainer" class="reader">
+      <div id="pagesContainer" role="main" aria-label="Сторінки манги"></div>
+    </main>
+
+    <script src="i18n.js"></script>
+    <script src="reader.js"></script>
+  </body>
+</html>

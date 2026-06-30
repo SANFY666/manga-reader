@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="app_title">Manga Reader — Каталог</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <h1 data-i18n="app_title">📖 Manga Reader</h1>
+
+        <!-- ПЕРЕМИКАЧ МОВ -->
+        <div class="language-selector">
+          <select
+            id="languageSelect"
+            title="Вибір мови"
+            aria-label="Вибір мови"
+          >
+            <option value="uk">🇺🇦 Українська</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          data-i18n-placeholder="search_placeholder"
+          placeholder="Пошук манги за назвою..."
+          aria-label="Пошук манги"
+        />
+        <button id="searchBtn" data-i18n="search_button" aria-label="Знайти">
+          🔍
+        </button>
+        <button
+          id="addMangaBtn"
+          class="add-btn"
+          data-i18n="add_manga_button"
+          aria-label="Додати нову мангу"
+        >
+          ➕ Додати мангу
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div id="catalog" class="catalog"></div>
+      <div id="pagination" class="pagination"></div>
+    </main>
+
+    <!-- Модальне вікно -->
+    <div
+      id="addModal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="modalTitle"
+      aria-modal="true"
+    >
+      <div class="modal-content">
+        <span
+          class="close-modal"
+          role="button"
+          data-i18n="modal_close"
+          aria-label="Закрити"
+          >&times;</span
+        >
+        <h2 id="modalTitle" data-i18n="modal_title">➕ Додати нову мангу</h2>
+        <form id="addMangaForm">
+          <label
+            for="newTitle"
+            class="visually-hidden"
+            data-i18n="modal_title_label"
+            >Назва</label
+          >
+          <input
+            type="text"
+            id="newTitle"
+            data-i18n-placeholder="modal_title_label"
+            placeholder="Назва"
+            required
+            aria-required="true"
+          />
+
+          <label
+            for="newTitleUa"
+            class="visually-hidden"
+            data-i18n="modal_title_ua_label"
+            >Назва українською</label
+          >
+          <input
+            type="text"
+            id="newTitleUa"
+            data-i18n-placeholder="modal_title_ua_label"
+            placeholder="Назва (українською)"
+          />
+
+          <label
+            for="newDescription"
+            class="visually-hidden"
+            data-i18n="modal_description_label"
+            >Опис</label
+          >
+          <textarea
+            id="newDescription"
+            data-i18n-placeholder="modal_description_label"
+            placeholder="Опис"
+          ></textarea>
+
+          <label
+            for="newGenres"
+            class="visually-hidden"
+            data-i18n="modal_genres_label"
+            >Жанри</label
+          >
+          <input
+            type="text"
+            id="newGenres"
+            data-i18n-placeholder="modal_genres_label"
+            placeholder="Жанри (через кому, наприклад: Екшн, Драма)"
+          />
+
+          <label
+            for="newCover"
+            class="visually-hidden"
+            data-i18n="modal_cover_label"
+            >URL обкладинки</label
+          >
+          <input
+            type="text"
+            id="newCover"
+            data-i18n-placeholder="modal_cover_label"
+            placeholder="URL обкладинки"
+          />
+
+          <label
+            for="newAuthor"
+            class="visually-hidden"
+            data-i18n="modal_author_label"
+            >Автор</label
+          >
+          <input
+            type="text"
+            id="newAuthor"
+            data-i18n-placeholder="modal_author_label"
+            placeholder="Автор"
+          />
+
+          <label
+            for="newStatus"
+            class="visually-hidden"
+            data-i18n="modal_status_label"
+            >Статус</label
+          >
+          <select id="newStatus" title="Статус манги" aria-label="Статус манги">
+            <option value="Онґоїнг" data-i18n="modal_status_ongoing">
+              Онґоїнг
+            </option>
+            <option value="Завершено" data-i18n="modal_status_completed">
+              Завершено
+            </option>
+            <option value="Заморожено" data-i18n="modal_status_frozen">
+              Заморожено
+            </option>
+          </select>
+
+          <button
+            type="submit"
+            data-i18n="modal_submit"
+            aria-label="Додати мангу до бази даних"
+          >
+            ➕ Додати
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        <span data-i18n="footer_text"
+          >📚 Власна база даних • Кількість манг:</span
+        >
+        <span id="mangaCount">0</span>
+      </p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
