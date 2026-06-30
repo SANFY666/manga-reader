@@ -7,11 +7,37 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <div class="header-top">
+    <header class="main-header">
+      <!-- Ліва частина: Назва / Логотип -->
+      <div class="header-left">
         <h1 data-i18n="app_title">📖 Manga Reader</h1>
+      </div>
 
-        <!-- ПЕРЕМИКАЧ МОВ -->
+      <!-- Центральна частина: Пошук -->
+      <div class="header-center search-box">
+        <input
+          type="text"
+          id="searchInput"
+          data-i18n-placeholder="search_placeholder"
+          placeholder="Пошук манги за назвою..."
+          aria-label="Пошук манги"
+        />
+        <button id="searchBtn" data-i18n="search_button" aria-label="Знайти">
+          🔍
+        </button>
+      </div>
+
+      <!-- Права частина: Додати мангу + Вибір мови -->
+      <div class="header-right">
+        <button
+          id="addMangaBtn"
+          class="add-btn"
+          data-i18n="add_manga_button"
+          aria-label="Додати нову мангу"
+        >
+          ➕ Додати мангу
+        </button>
+
         <div class="language-selector">
           <select
             id="languageSelect"
@@ -23,27 +49,6 @@
             <option value="ru">🇷🇺 Русский</option>
           </select>
         </div>
-      </div>
-
-      <div class="search-box">
-        <input
-          type="text"
-          id="searchInput"
-          data-i18n-placeholder="search_placeholder"
-          placeholder="Пошук манги за назвою..."
-          aria-label="Пошук манги"
-        />
-        <button id="searchBtn" data-i18n="search_button" aria-label="Знайти">
-          🔍
-        </button>
-        <button
-          id="addMangaBtn"
-          class="add-btn"
-          data-i18n="add_manga_button"
-          aria-label="Додати нову мангу"
-        >
-          ➕ Додати мангу
-        </button>
       </div>
     </header>
 
