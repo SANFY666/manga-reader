@@ -369,23 +369,23 @@ addScrollTopButton();
 
 // ===== ПРИХОВУВАННЯ HEADER-TOP ПРИ СКРОЛІ =====
 let lastScrollTop = 0;
-const headerElement = document.querySelector('header'); // Тепер вибираємо весь header
+const headerTopElement = document.querySelector('.header-top');
 
 window.addEventListener('scroll', function() {
   let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   
-  // Якщо скролимо вниз і прокрутили більше 50px
+  // Приховуємо header-top тільки якщо прокрутили вниз більше ніж на 50px
   if (scrollTop > lastScrollTop && scrollTop > 50) {
-    headerElement.classList.add('hidden-on-scroll');
+    headerTopElement.classList.add('hidden-on-scroll');
     
-    // Закриваємо панель налаштувань, щоб не заважала
+    // Закриваємо панель налаштувань, якщо користувач почав гортати
     if (settingsPanel.classList.contains('open')) {
       settingsPanel.classList.remove('open');
       settingsToggle.classList.remove('active');
     }
   } else {
-    // Якщо скролимо вгору - повертаємо
-    headerElement.classList.remove('hidden-on-scroll');
+    // Показуємо назад, якщо скролимо вгору
+    headerTopElement.classList.remove('hidden-on-scroll');
   }
   
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
