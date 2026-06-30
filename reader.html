@@ -8,41 +8,49 @@
   </head>
   <body>
     <header>
+      <!-- ВЕРХНЯ ПАНЕЛЬ -->
       <div class="header-top">
-        <a
-          href="index.html"
-          class="back-btn"
-          data-i18n="reader_back"
-          aria-label="Повернутися до каталогу"
-          >← Назад</a
-        >
-        <h2 id="mangaTitle">Завантаження...</h2>
-
-        <!-- ПЕРЕМИКАЧ МОВ -->
-        <div class="language-selector">
-          <select
-            id="languageSelect"
-            title="Вибір мови"
-            aria-label="Вибір мови"
+        <!-- Блок зліва (Кнопка Назад) -->
+        <div class="header-left">
+          <a
+            href="index.html"
+            class="back-btn"
+            data-i18n="reader_back"
+            aria-label="Повернутися до каталогу"
+            >← Назад</a
           >
-            <option value="uk">🇺🇦 Українська</option>
-            <option value="en">🇬🇧 English</option>
-            <option value="ru">🇷🇺 Русский</option>
-          </select>
         </div>
 
-        <button
-          id="settingsToggle"
-          class="settings-toggle"
-          data-i18n-title="reader_settings"
-          title="Налаштування"
-          aria-label="Відкрити налаштування"
-        >
-          ⚙️
-        </button>
+        <!-- Назва по центру -->
+        <h2 id="mangaTitle">Завантаження...</h2>
+
+        <!-- Блок справа (Мова та Налаштування) -->
+        <div class="header-right">
+          <div class="language-selector">
+            <select
+              id="languageSelect"
+              title="Вибір мови"
+              aria-label="Вибір мови"
+            >
+              <option value="uk">🇺🇦 Українська</option>
+              <option value="en">🇬🇧 English</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+          </div>
+
+          <button
+            id="settingsToggle"
+            class="settings-toggle"
+            data-i18n-title="reader_settings"
+            title="Налаштування"
+            aria-label="Відкрити налаштування"
+          >
+            ⚙️
+          </button>
+        </div>
       </div>
 
-      <!-- Панель налаштувань -->
+      <!-- Панель налаштувань (без змін) -->
       <div id="settingsPanel" class="settings-panel">
         <div class="setting-group">
           <label for="widthSlider" data-i18n="settings_width"
@@ -86,42 +94,50 @@
         </button>
       </div>
 
+      <!-- НАВІГАЦІЯ ГЛАВ -->
       <div class="chapter-nav">
-        <button
-          id="prevChapter"
-          data-i18n-title="reader_prev_title"
-          title="Попередня глава"
-          aria-label="Попередня глава"
-          data-i18n="reader_prev"
-        >
-          ◀
-        </button>
+        <!-- Порожній блок зліва для балансу (щоб центр був рівно по центру) -->
+        <div class="nav-left"></div>
 
-        <label
-          for="chapterSelect"
-          class="visually-hidden"
-          data-i18n="reader_select_chapter"
-          >Вибір глави</label
-        >
-        <select
-          id="chapterSelect"
-          title="Виберіть главу для читання"
-          aria-label="Вибір глави"
-        >
-          <option value="" data-i18n="reader_loading">Завантаження...</option>
-        </select>
+        <!-- Центральний блок з вибором глави -->
+        <div class="nav-center">
+          <button
+            id="prevChapter"
+            data-i18n-title="reader_prev_title"
+            title="Попередня глава"
+            aria-label="Попередня глава"
+            data-i18n="reader_prev"
+          >
+            ◀
+          </button>
 
-        <button
-          id="nextChapter"
-          data-i18n-title="reader_next_title"
-          title="Наступна глава"
-          aria-label="Наступна глава"
-          data-i18n="reader_next"
-        >
-          ▶
-        </button>
+          <label
+            for="chapterSelect"
+            class="visually-hidden"
+            data-i18n="reader_select_chapter"
+            >Вибір глави</label
+          >
+          <select
+            id="chapterSelect"
+            title="Виберіть главу для читання"
+            aria-label="Вибір глави"
+          >
+            <option value="" data-i18n="reader_loading">Завантаження...</option>
+          </select>
 
-        <div class="chapter-info">
+          <button
+            id="nextChapter"
+            data-i18n-title="reader_next_title"
+            title="Наступна глава"
+            aria-label="Наступна глава"
+            data-i18n="reader_next"
+          >
+            ▶
+          </button>
+        </div>
+
+        <!-- Інформація про сторінки (справа) -->
+        <div class="nav-right chapter-info">
           <span id="chapterNumber" aria-live="polite" data-i18n="reader_chapter"
             >Глава 1</span
           >
