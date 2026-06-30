@@ -31,9 +31,6 @@ body {
 }
 
 /* Стилізація скролбару */
-::-webkit-scrollbar {
-  width: 10px;
-}
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
