@@ -48,14 +48,12 @@ body {
 /* === Шапка сайту === */
 header {
   background: rgba(28, 28, 36, 0.85);
-  -webkit-backdrop-filter: blur(12px); /* Спочатку з префіксом */
-  backdrop-filter: blur(12px); /* Потім стандартна */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   padding: 15px 30px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Змінюємо на column, щоб header-top і nav були один під одним */
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: sticky;
   top: 0;
@@ -66,9 +64,24 @@ header {
 header .header-top {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap; /* Забороняємо перенесення, щоб все було в один ряд */
+  flex-wrap: nowrap;
   gap: 15px;
   width: 100%;
+  
+  /* Додаємо ці рядки для плавної анімації приховування */
+  max-height: 100px; /* Висота в розгорнутому стані */
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* Цей клас буде додавати JS при скролі вниз */
+header .header-top.hidden-on-scroll {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 h1 {
