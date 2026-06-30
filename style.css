@@ -63,23 +63,20 @@ header {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
+header.hidden-on-scroll {
+  transform: translateY(-100%); /* Повністю ховає header вгору за межі екрана */
+}
 
 header .header-top {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /* Забороняємо перенесення, щоб все було в один ряд */
   gap: 15px;
   width: 100%;
-  
-  /* Додаємо ці рядки для плавної анімації приховування */
+
   max-height: 100px; /* Висота в розгорнутому стані */
   opacity: 1;
   overflow: hidden;
-}
-
-/* Цей клас буде додавати JS при скролі вниз */
-header .header-top.hidden-on-scroll {
-   transform: translateY(-100%); /* Повністю ховає header вгору за межі екрана */
 }
 
 h1 {
